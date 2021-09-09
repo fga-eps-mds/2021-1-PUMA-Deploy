@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { Pool, Client } = require('pg');
 const connectionString = process.env.DB_URL;
-const tries = 5;
+let tries = 5;
 
 const pool = new Pool({
     connectionString: connectionString,
