@@ -1,4 +1,4 @@
-version: "3.5"
+version: "3"
 services:
     db:
         image: postgres
@@ -12,21 +12,53 @@ services:
         ports:
             - "5432:5432"
         networks:
-            - puma-network
-    backend:
-        container_name: backend
-        build:
-            context: .
-            dockerfile: Dockerfile
+            - puma-network-p
+    project-service:
+        container_name: project-service
+        image: edvl/puma:projectservice-latest
         ports:
             - "3000:3000"
         depends_on:
             - db
-        volumes:
-            - .:/app
-            - /app/node_modules
         networks:
-            - puma-network
+            - puma-network-p
+    user-service:
+        container_name: user-service
+        image: edvl/puma:userservice-latest
+        ports:
+            - "3001:3001"
+        depends_on:
+            - db
+        networks:
+            - puma-network-p
+    api-gateway:
+        container_name: api-gateway
+        image: edvl/puma:apigateway-latest
+        ports:
+            - "3004:3004"
+        networks:
+            - puma-network-p
+    frontend:
+        container_name: frontend
+        image: edvl/puma:frontend-latest
+        ports:
+            - "8081:80"
+        networks:
+            - puma-network-p
+    watchtower:
+        image: containrrr/watchtower
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+        command: --debug --http-api-update
+        environment:
+          - WATCHTOWER_HTTP_API_TOKEN=${WATCH_TOKEN}
+        labels:
+          - "com.centurylinklabs.watchtower.enable=false"
+        ports:
+          - 8080:8080
+        networks:
+            - puma-network-p
+
             
 networks:
-    puma-network:            
+    puma-network-p:            

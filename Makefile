@@ -1,15 +1,9 @@
 include .env
 
-.PHONY: up-build
+.PHONY: prod
 
-up-build:
+prod:
 	chmod +x ./wait-for-it.sh && sudo docker-compose up --build
-
-.PHONY: up
-
-up:
-	chmod +x ./wait-for-it.sh && sudo docker-compose up
-	
 
 .PHONY: down
 
