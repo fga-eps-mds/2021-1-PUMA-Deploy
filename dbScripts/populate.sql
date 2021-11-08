@@ -32,3 +32,7 @@ INSERT INTO SUBAREA(knowledgeAreaId, description) VALUES
   (6, 'Outras')
   ON CONFLICT DO NOTHING;
 
+  INSERT INTO SUBJECT(name, courseSyllabus) VALUES
+  ('PSP-1', 'Donec id semper ipsum. Sed et tempus est. Integer aliquet dolor magna, quis lobortis lectus congue nec. Aliquam sodales, nulla a commodo pellentesque, magna est vestibulum risus, ut facilisis massa nulla nec dolor. Sed aliquam, nisl non maximus dapibus, sem.'),
+  ('PSP-2', 'Proin sit amet fermentum risus. Nam rutrum id ex in pretium. In lacinia pharetra nibh, ac tristique erat rutrum eget. Morbi pellentesque eu augue eu.')
+  ON CONFLICT DO NOTHING;
