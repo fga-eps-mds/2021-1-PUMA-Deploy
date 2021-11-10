@@ -27,6 +27,7 @@ DB_USER={{Nome do usuário do banco de dados}}
 DB_PASS={{Senha de acesso à base}}
 DB={{Nome da base de dados}}
 WATCH_TOKEN={{Token de configuração do watchtower}}
+DOCKER_HUB={{conta/repositório DockerHub}}
 
 ## Executando o projeto
 Para executar o projeto, navegue até a pasta raiz do repositório de deploy

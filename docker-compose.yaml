@@ -15,7 +15,7 @@ services:
             - puma-network-p
     project-service:
         container_name: project-service
-        image: edvl/puma:projectservice-latest
+        image: ${DOCKER_HUB}:projectservice-latest
         ports:
             - "3000:3000"
         depends_on:
@@ -24,7 +24,7 @@ services:
             - puma-network-p
     user-service:
         container_name: user-service
-        image: edvl/puma:userservice-latest
+        image: ${DOCKER_HUB}:userservice-latest
         ports:
             - "3001:3001"
         depends_on:
@@ -33,14 +33,14 @@ services:
             - puma-network-p
     api-gateway:
         container_name: api-gateway
-        image: edvl/puma:apigateway-latest
+        image: ${DOCKER_HUB}:apigateway-latest
         ports:
             - "3004:3004"
         networks:
             - puma-network-p
     frontend:
         container_name: frontend
-        image: edvl/puma:frontend-latest
+        image: ${DOCKER_HUB}:frontend-latest
         ports:
             - "80:80"
         networks:
